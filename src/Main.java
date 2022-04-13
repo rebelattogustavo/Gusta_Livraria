@@ -130,6 +130,9 @@ public class Main {
                     cadastrarLivro();
                     menuPrincipal();
                     break;
+                case 3:
+                    editarLivros();
+                    break;
                 case 4:
                     menuInicial();
                     break;
@@ -291,6 +294,14 @@ public class Main {
                             listaLivros.get(i).setStatus(6);
                             listaLivros.get(i).setEditora(editora);
                             break;
+                    }
+                }else if(listaPessoas.get(indicePessoa) instanceof Autor){
+                    System.out.println("Terminou a edição?");
+                    char resp = tec.next().charAt(0);
+                    if(resp == 's' || resp == 'S'){
+                        listaLivros.get(i).setStatus(1);
+                    }else{
+                        menuPrincipal();
                     }
                 }
             }
