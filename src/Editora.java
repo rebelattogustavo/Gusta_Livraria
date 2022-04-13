@@ -17,11 +17,4 @@ public class Editora {
         this.cnpj = cnpj;
     }
 
-    public Editora(String nome, String cnpj) {
-        this.nome = nome;
-        this.cnpj = cnpj;
-    }
-
-
-
 }

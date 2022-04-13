@@ -1,9 +1,21 @@
 public class Livro {
     private String titulo;
+    Autor autor;
+    Editora editora;
     private int status, qtdPag, isbn;
+    private double porcentagem = 0;
+
 
     public String getTitulo() {
         return titulo;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
     }
 
     public void setTitulo(String titulo) {
@@ -34,20 +46,47 @@ public class Livro {
         this.isbn = isbn;
     }
 
-    public Livro(String titulo, int status, int qtdPag, int isbn, String nome_autor, String sobrenome_autor) {
+    public double getPorcentagem() {
+        return porcentagem;
+    }
+
+    public void setPorcentagem(double porcentagem) {
+        this.porcentagem = porcentagem;
+    }
+
+    public Editora getEditora() {
+        return editora;
+    }
+
+    public void setEditora(Editora editora) {
+        this.editora = editora;
+    }
+
+    public Livro(String titulo, Autor autor, int status, int qtdPag, int isbn) {
         this.titulo = titulo;
+        this.autor = autor;
         this.status = status;
         this.qtdPag = qtdPag;
         this.isbn = isbn;
     }
 
-    @Override
-    public String toString() {
-        return "Livro{" +
-                "titulo='" + titulo + '\'' +
-                ", status=" + status +
-                ", qtdPag=" + qtdPag +
-                ", isbn=" + isbn +
-                '}';
+    public void mudarPorcent(int qtdPag, int paglidas){
+        this.porcentagem = (paglidas * 100)/qtdPag;
     }
+
+     @Override
+    public String toString() {
+        String texto =  "Livro{" +
+                "titulo: '" + titulo + '\'' +
+                ", nome do autor: " + getAutor().getNome() + " " + getAutor().getSobrenome() +
+                ", status: " + status +
+                ", qtdPag: " + qtdPag +
+                ", isbn: " + isbn +
+                ", foi revisado: " + getPorcentagem() + "% do livro";
+                if(this.getEditora() != null) {
+                    texto += ", editora: " + getEditora().getNome();
+                }
+            return texto;
+    }
+
 }
