@@ -11,7 +11,8 @@ public class Revisor extends Pessoa{
     }
 
     @Override
-    public void editarLivro(int indiceLivro) {
+    public void editarLivro() {
+        int indiceLivro = Main.verificaLivro();
         if(Main.listaLivros.get(indiceLivro).getStatus() == 1){
             Main.listaLivros.get(indiceLivro).setStatus(2);
         }else if(Main.listaLivros.get(indiceLivro).getStatus() == 2){

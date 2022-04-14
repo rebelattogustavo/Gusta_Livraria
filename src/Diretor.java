@@ -14,7 +14,8 @@ public class Diretor extends Pessoa{
     }
 
     @Override
-    public void editarLivro(int indiceLivro) {
+    public void editarLivro() {
+        int indiceLivro = Main.verificaLivro();
         int opcaoEdita = Main.selecionaTipoEditar("passagem pelo revisor", indiceLivro);
         switch (opcaoEdita){
             case 1:

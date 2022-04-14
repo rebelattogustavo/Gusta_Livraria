@@ -119,15 +119,13 @@ public class Main {
                         System.out.println("Deseja editar algum livro?");
                         char resp =  tec.next().charAt(0);
                         if(resp == 's' || resp == 'S'){
-                            System.out.print("Informe o ISBN do livro que você deseja editar: ");
-                            int isbn = tec.nextInt();
-                            int indiceLivro = verificaLivro(isbn);
+                            int indiceLivro = verificaLivro();
                             if(indiceLivro == -1){
                                 System.out.println("Livro não encontrado!");
                                 menuPrincipal();
                             }else{
                                 listaLivros.get(indiceLivro).setStatus(2);
-                                user.editarLivro(indiceLivro);
+                                user.editarLivro();
                             }
                         }else if(resp == 'n' || resp == 'N'){
                             menuPrincipal();
@@ -159,10 +157,7 @@ public class Main {
                     menuPrincipal();
                     break;
                 case 3:
-                    System.out.print("Informe o ISBN do livro que você deseja editar: ");
-                    int isbn = tec.nextInt();
-                    int indiceLivro = verificaLivro(isbn);
-                    user.editarLivro(indiceLivro);
+                    user.editarLivro();
                     menuPrincipal();
                     break;
                 case 4:
@@ -185,15 +180,13 @@ public class Main {
                         System.out.println("Deseja editar algum livro?");
                         char resp =  tec.next().charAt(0);
                         if(resp == 's' || resp == 'S'){
-                            System.out.print("Informe o ISBN do livro que você deseja editar: ");
-                            int isbn = tec.nextInt();
-                            int indiceLivro = verificaLivro(isbn);
+                            int indiceLivro = verificaLivro();
                             if(indiceLivro == -1){
                                 System.out.println("Livro não encontrado!");
                                 menuPrincipal();
                             }else{
                                 listaLivros.get(indiceLivro).setStatus(2);
-                                user.editarLivro(indiceLivro);
+                                user.editarLivro();
                             }
                         }else if(resp == 'n' || resp == 'N'){
                             menuPrincipal();
@@ -220,14 +213,13 @@ public class Main {
                         System.out.println("Deseja revisar algum livro listado?");
                         char resp =  tec.next().charAt(0);
                         if(resp == 's' || resp == 'S'){
-                            System.out.print("Informe o ISBN do livro desejado: ");
-                            int isbn = tec.nextInt();
-                            int indiceLivro = verificaLivro(isbn);
+                            int indiceLivro = verificaLivro();
                             if(indiceLivro == -1){
                                 System.out.println("Livro não encontrado!");
                                 menuPrincipal();
+                            }else{
+                                listaLivros.get(indiceLivro).setStatus(2);
                             }
-                            listaLivros.get(indiceLivro).setStatus(2);
                         }else if(resp == 'n' || resp == 'N'){
                             menuPrincipal();
                         }else{
@@ -242,15 +234,7 @@ public class Main {
                 menuPrincipal();
                 break;
             case 3:
-                int cont =-1;
-                System.out.print("Informe o ISBN do livro que você deseja editar: ");
-                int isbn = tec.nextInt();
-                int indiceLivro = verificaLivro(isbn);
-                if(indiceLivro == -1){
-                    System.out.println("Livro não encontrado!");
-                    menuPrincipal();
-                }
-                user.editarLivro(indiceLivro);
+                user.editarLivro();
                 menuPrincipal();
                 break;
             case 4:
@@ -317,13 +301,16 @@ public class Main {
             return opcao;
     }
 
-    private static int verificaLivro(int isbn){
+    public static int verificaLivro(){
+        System.out.print("Informe o ISBN do livro que você deseja editar: ");
+        int isbn = tec.nextInt();
+        int verifica = -1;
         for (int i=0;i<listaLivros.size();i++){
             if(listaLivros.get(i).getIsbn() == isbn) {
                 return i;
             }
         }
-        return -1;
+        return verifica;
     }
 
 

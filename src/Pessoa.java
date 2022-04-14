@@ -5,7 +5,7 @@ public abstract class Pessoa {
 
     public abstract void listarAtividade();
 
-    public abstract void editarLivro(int indiceLivro);
+    public abstract void editarLivro();
 
     public String getNome() {
         return nome;

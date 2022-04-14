@@ -19,7 +19,8 @@ public class Autor extends Pessoa{
     }
 
     @Override
-    public void editarLivro(int indicelivro) {
+    public void editarLivro() {
+        int indicelivro = Main.verificaLivro();
         Main.listaLivros.get(indicelivro).setStatus(1);
     }
 
