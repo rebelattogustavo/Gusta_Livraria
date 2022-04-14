@@ -1,5 +1,11 @@
-public class Pessoa {
+public abstract class Pessoa {
     private String nome, cpf, sobrenome, email, genero, senha;
+
+    public abstract void listarLivros();
+
+    public abstract void listarAtividade();
+
+    public abstract void editarLivro(int indiceLivro);
 
     public String getNome() {
         return nome;
@@ -68,4 +74,7 @@ public class Pessoa {
                 ", genero='" + genero + '\'' +
                 ", senha='" + senha + '\'';
     }
+
+
+
 }

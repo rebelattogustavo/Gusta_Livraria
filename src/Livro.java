@@ -82,7 +82,7 @@ public class Livro {
                 " | Status: " + status +
                 " | Quantidade de páginas: " + qtdPag +
                 " | ISBN: " + isbn +
-                " |  Foi revisado: " + getPorcentagem() + "% do livro";
+                " | Foi revisado: " + getPorcentagem() + "% do livro";
                 if(this.getEditora() != null) {
                     texto += " | Editora: " + getEditora().getNome();
                 }
