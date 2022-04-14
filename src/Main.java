@@ -7,7 +7,7 @@ public class Main {
     private static ArrayList<Pessoa> listaPessoas = new ArrayList<>();
     private static ArrayList<Livro> listaLivros = new ArrayList<>();
     private static Pessoa user;
-        static Editora editora = new Editora();
+    static Editora editora = new Editora();
 
     public static void main(String[] args) {
         String nome,cnpj, cpf, sobrenome, email, genero, senha="1";
@@ -172,48 +172,62 @@ public class Main {
     }
 
     private static void listarAtividade(){
+        int cont= -1;
         if(listaPessoas.get(indicePessoa) instanceof Revisor){
             for(int i =0;i< listaLivros.size();i++){
                 if(listaLivros.get(i).getStatus() == 2){
                     System.out.println(listaLivros.get(i).toString());
+                    cont++;
                 }
             }
-            System.out.println("Deseja editar algum livro?");
-            char resp =  tec.next().charAt(0);
-            if(resp == 's' || resp == 'S'){
-                editarLivros();
-            }else if(resp == 'n' || resp == 'N'){
-                menuPrincipal();
+            if(cont > -1){
+                System.out.println("Deseja editar algum livro?");
+                char resp =  tec.next().charAt(0);
+                if(resp == 's' || resp == 'S'){
+                    editarLivros();
+                }else if(resp == 'n' || resp == 'N'){
+                    menuPrincipal();
+                }else{
+                    System.out.println("ANTA DIGITA DIREITO!!");
+                    menuPrincipal();
+                }
             }else{
-                System.out.println("ANTA DIGITA DIREITO!!");
+                System.out.println("Nenhuma atividade para listar!");
                 menuPrincipal();
             }
         }else if(listaPessoas.get(indicePessoa) instanceof Diretor){
+            cont= -1;
             for (int i =0;i<listaLivros.size();i++){
                 if(listaLivros.get(i).getStatus() == 4){
                     System.out.println(listaLivros.get(i).toString());
+                    cont++;
                 }
             }
-            System.out.println("Deseja editar algum livro?");
-            char resp =  tec.next().charAt(0);
-            if(resp == 's' || resp == 'S'){
-                editarLivros();
-            }else if(resp == 'n' || resp == 'N'){
-                menuPrincipal();
+            if(cont > -1){
+                System.out.println("Deseja editar algum livro?");
+                char resp =  tec.next().charAt(0);
+                if(resp == 's' || resp == 'S'){
+                    editarLivros();
+                }else if(resp == 'n' || resp == 'N'){
+                    menuPrincipal();
+                }else{
+                    System.out.println("ANTA DIGITA DIREITO!!");
+                    menuPrincipal();
+                }
             }else{
-                System.out.println("ANTA DIGITA DIREITO!!");
+                System.out.println("Nenhuma atividade para listar!");
                 menuPrincipal();
             }
         }
     }
 
     private static void cadastrarLivro(){
-        System.out.println("--- CADASTRO DE LIVROS ---" +
+        System.out.print("--- CADASTRO DE LIVROS ---" +
                 "\nTítulo: ");
         String titulo = tec.next();
-        System.out.println("Quantidade de páginas: ");
+        System.out.print("Quantidade de páginas: ");
         int qtdPag = tec.nextInt();
-        System.out.println("ISBN: ");
+        System.out.print("ISBN: ");
         int isbn = tec.nextInt();
 
         Livro livro = new Livro(titulo, (Autor) user ,1, qtdPag, isbn);
@@ -221,49 +235,70 @@ public class Main {
     }
 
     private static void listarLivros(){
+        int cont =-1;
         if(listaPessoas.get(indicePessoa) instanceof Revisor){
             for(int i =0;i<listaLivros.size();i++){
                 if(listaLivros.get(i).getStatus() == 1){
                     System.out.println(listaLivros.get(i).toString());
+                    cont++;
                 }
             }
-            System.out.println("Deseja revisar algum livro listado?");
-            char resp =  tec.next().charAt(0);
-            if(resp == 's' || resp == 'S'){
-                System.out.print("Informe o ISBN do livro desejado: ");
-                int isbn = tec.nextInt();
-                for(int i =0;i<listaLivros.size();i++){
-                    if(listaLivros.get(i).getIsbn() == isbn){
-                        System.out.println("Livro adicionado a sua lista de atividade!");
-                        listaLivros.get(i).setStatus(2);
-                        menuPrincipal();
+            if(cont > -1){
+                System.out.println("Deseja revisar algum livro listado?");
+                char resp =  tec.next().charAt(0);
+                if(resp == 's' || resp == 'S'){
+                    System.out.print("Informe o ISBN do livro desejado: ");
+                    int isbn = tec.nextInt();
+                    for(int i =0;i<listaLivros.size();i++){
+                        if(listaLivros.get(i).getIsbn() == isbn){
+                            System.out.println("Livro adicionado a sua lista de atividade!");
+                            listaLivros.get(i).setStatus(2);
+                            menuPrincipal();
+                        }
                     }
+                }else if(resp == 'n' || resp == 'N'){
+                    menuPrincipal();
+                }else{
+                    System.out.println("ANTA DIGITA DIREITO!!");
+                    menuPrincipal();
                 }
-            }else if(resp == 'n' || resp == 'N'){
-                menuPrincipal();
-            }else{
-                System.out.println("ANTA DIGITA DIREITO!!");
+            }else {
+                System.out.println("Nenhum livro para listar!");
                 menuPrincipal();
             }
         } else if(listaPessoas.get(indicePessoa) instanceof Diretor){
+            cont = -1;
             for(int i =0;i<listaLivros.size();i++){
                 System.out.println(listaLivros.get(i).toString());
+                cont++;
+            }
+            if (cont == -1) {
+                System.out.println("Nenhum livro para listar!");
+                menuPrincipal();
             }
         } else if(listaPessoas.get(indicePessoa) instanceof Autor){
+            cont = -1;
             for (int i=0;i<listaLivros.size();i++){
                 if(listaPessoas.get(indicePessoa) == listaLivros.get(i).getAutor()){
                     System.out.println(listaLivros.get(i).toString());
+                    cont++;
                 }
+            }
+            if (cont == -1){
+                System.out.println("Você cadastrou nenhum livro até o momento!");
+                menuPrincipal();
             }
         }
             menuPrincipal();
     }
 
     private static void editarLivros(){
+        int cont =-1;
         System.out.print("Informe o ISBN do livro que você deseja editar: ");
         int isbn = tec.nextInt();
         for (int i=0;i<listaLivros.size();i++){
             if(listaLivros.get(i).getIsbn() == isbn){
+                cont = 0;
                 if (listaPessoas.get(indicePessoa) instanceof Revisor){
                     int opcaoEdita = selecionaTipoEditar("revisão");
                     switch (opcaoEdita){
@@ -282,7 +317,7 @@ public class Main {
                              break;
                     }
                 }else if(listaPessoas.get(indicePessoa) instanceof Diretor){
-                    int opcaoEdita = selecionaTipoEditar("passagem pelo reviso");
+                    int opcaoEdita = selecionaTipoEditar("passagem pelo revisor");
                     switch (opcaoEdita){
                         case 1:
                             listaLivros.get(i).setStatus(4);
@@ -306,11 +341,30 @@ public class Main {
                 }
             }
         }
+        if(cont == -1){
+            System.out.println("Livro não encontrado ou inexistente!");
+            menuPrincipal();
+        }
         menuPrincipal();
     }
 
     private static void cadastrarRevisor(){
+        System.out.print("Informe as informações a seguir: " +
+                "\nNome do revisor: ");
+        String nome = tec.next();
+        System.out.print("Informe o sobrenome do revisor: ");
+        String sobrenome = tec.next();
+        System.out.print("Informe o CPF do revisor: ");
+        String cpf = tec.next();
+        System.out.print("Informe o gênero do revisor: ");
+        String genero = tec.next();
+        System.out.print("Informe o email do revisor: ");
+        String email = tec.next();
+        System.out.print("Informe a senha do revisor: ");
+        String senha = tec.next();
 
+        Revisor revisor = new Revisor(nome, cpf, sobrenome, email, genero, senha);
+        listaPessoas.add(revisor);
     }
 
     public static int selecionaTipoEditar(String opcaoMenu){

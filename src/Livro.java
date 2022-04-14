@@ -76,15 +76,15 @@ public class Livro {
 
      @Override
     public String toString() {
-        String texto =  "Livro{" +
-                "titulo: '" + titulo + '\'' +
-                ", nome do autor: " + getAutor().getNome() + " " + getAutor().getSobrenome() +
-                ", status: " + status +
-                ", qtdPag: " + qtdPag +
-                ", isbn: " + isbn +
-                ", foi revisado: " + getPorcentagem() + "% do livro";
+        String texto =  "Livro: " +
+                "Titulo: '" + titulo + '\'' +
+                " | Nome do autor: " + getAutor().getNome() + " " + getAutor().getSobrenome() +
+                " | Status: " + status +
+                " | Quantidade de páginas: " + qtdPag +
+                " | ISBN: " + isbn +
+                " |  Foi revisado: " + getPorcentagem() + "% do livro";
                 if(this.getEditora() != null) {
-                    texto += ", editora: " + getEditora().getNome();
+                    texto += " | Editora: " + getEditora().getNome();
                 }
             return texto;
     }
