@@ -137,6 +137,13 @@ public class Main {
                     break;
                 case 2:
                     user.listarLivros();
+                    System.out.println("Deseja adicionar algum livro a sua lista de atividade?");
+                    resp = tec.next().charAt(0);
+                    if(resp == 's' || resp == 'S'){
+                        user.editarLivro();
+                    }else if( resp == 'n' || resp == 'N'){
+                        menuPrincipal();
+                    }
                     menuPrincipal();
                     break;
                 case 3:

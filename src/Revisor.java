@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Revisor extends Pessoa{
-    private ArrayList<Livro> listaLivrosRevisor = new ArrayList<>();
+    public static ArrayList<Livro> listaLivrosRevisor = new ArrayList<>();
 
     public ArrayList<Livro> getListaLivrosRevisor() {
         return listaLivrosRevisor;
