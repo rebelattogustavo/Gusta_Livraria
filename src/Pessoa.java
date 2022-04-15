@@ -3,9 +3,11 @@ public abstract class Pessoa {
 
     public abstract void listarLivros();
 
-    public abstract void listarAtividade();
+    public abstract String listarAtividade();
 
     public abstract void editarLivro();
+
+    public abstract String[] opcoes();
 
     public String getNome() {
         return nome;

@@ -103,147 +103,51 @@ public class Main {
     }
 
     public static void menuPrincipal(){
-        int opcao=0;
-        if(listaPessoas.get(indicePessoa) instanceof Revisor){
-            System.out.println("--- MENU PRINCIPAL ---" +
-                    "\n1- Listar atividade" +
-                    "\n2- Listar livros" +
-                    "\n3- Editar livros" +
-                    "\n4- Logout" +
-                    "\n0- Encerrar");
-            opcao = tec.nextInt();
-            switch (opcao){
+        System.out.println("---- MENU PRINCIPAL ----");
+        String[] opcoes = user.opcoes();
+        for(String opcao2 : opcoes){
+            System.out.println(opcao2);
+        }
+        int escolha = tec.nextInt();
+        if(escolha == opcoes.length){
+            System.exit(0);
+        }else if(escolha == (opcoes.length - 1)){
+            menuInicial();
+        }else if(escolha < 1 || escolha > opcoes.length){
+            System.out.println("Opção inválida");
+            menuPrincipal();
+        }else{
+            switch (escolha){
                 case 1:
-                    user.listarAtividade();
-                    if(Revisor.cont > -1){
-                        System.out.println("Deseja editar algum livro?");
-                        char resp =  tec.next().charAt(0);
-                        if(resp == 's' || resp == 'S'){
-                            int indiceLivro = verificaLivro();
-                            if(indiceLivro == -1){
-                                System.out.println("Livro não encontrado!");
-                                menuPrincipal();
-                            }else{
-                                listaLivros.get(indiceLivro).setStatus(2);
-                                user.editarLivro();
-                            }
-                        }else if(resp == 'n' || resp == 'N'){
-                            menuPrincipal();
-                        }else{
-                            System.out.println("ANTA DIGITA DIREITO!!");
-                            menuPrincipal();
-                        }
-                    }else{
+                    System.out.println(user.listarAtividade());
+                    if(user.listarAtividade().equals("")){
                         System.out.println("Nenhuma atividade para listar!");
                         menuPrincipal();
                     }
+                    System.out.println("Dejesa editar um dos livros acima?");
+                    char resp = tec.next().charAt(0);
+                    if(resp == 's' || resp == 'S'){
+                        user.editarLivro();
+                    }else if(resp == 'n' || resp == 'N'){
+
+                    }else{
+                        System.out.println("ANTA digita direito!!");
+                    }
                     menuPrincipal();
                     break;
-                case 4:
-                    menuInicial();
-                    break;
-            }
-        }else if(listaPessoas.get(indicePessoa) instanceof Autor){
-            System.out.println("--- MENU PRINCIPAL ---" +
-                    "\n1- Cadastrar livro" +
-                    "\n2- Listar livros" +
-                    "\n3- Editar livro" +
-                    "\n4- Logout" +
-                    "\n0- Encerrar");
-            opcao = tec.nextInt();
-            switch (opcao){
-                case 1:
-                    cadastrarLivro();
+                case 2:
+                    user.listarLivros();
                     menuPrincipal();
                     break;
                 case 3:
-                    user.editarLivro();
-                    menuPrincipal();
-                    break;
-                case 4:
-                    menuInicial();
-                    break;
-            }
-        }else if(listaPessoas.get(indicePessoa) instanceof Diretor){
-            System.out.println("--- MENU PRINCIPAL ---" +
-                    "\n1- Listar atividade" +
-                    "\n2- Listar livros" +
-                    "\n3- Editar livros" +
-                    "\n4- Cadastrar revisor" +
-                    "\n5- Logout" +
-                    "\n0- Encerrar");
-            opcao = tec.nextInt();
-            switch (opcao){
-                case 1:
-                    user.listarAtividade();
-                    if(Diretor.cont > -1){
-                        System.out.println("Deseja editar algum livro?");
-                        char resp =  tec.next().charAt(0);
-                        if(resp == 's' || resp == 'S'){
-                            int indiceLivro = verificaLivro();
-                            if(indiceLivro == -1){
-                                System.out.println("Livro não encontrado!");
-                                menuPrincipal();
-                            }else{
-                                listaLivros.get(indiceLivro).setStatus(2);
-                                user.editarLivro();
-                            }
-                        }else if(resp == 'n' || resp == 'N'){
-                            menuPrincipal();
-                        }else{
-                            System.out.println("ANTA DIGITA DIREITO!!");
-                            menuPrincipal();
-                        }
-                    }else{
-                        System.out.println("Nenhuma atividade para listar!");
-                        menuPrincipal();
-                    }
-                    menuPrincipal();
-                    break;
-                case 5:
-                    menuInicial();
-                    break;
-            }
-        }
-        switch (opcao){
-            case 2:
-                user.listarLivros();
-                if(user instanceof Revisor){
-                    if(Revisor.cont > -1){
-                        System.out.println("Deseja revisar algum livro listado?");
-                        char resp =  tec.next().charAt(0);
-                        if(resp == 's' || resp == 'S'){
-                            int indiceLivro = verificaLivro();
-                            if(indiceLivro == -1){
-                                System.out.println("Livro não encontrado!");
-                                menuPrincipal();
-                            }else{
-                                listaLivros.get(indiceLivro).setStatus(2);
-                            }
-                        }else if(resp == 'n' || resp == 'N'){
-                            menuPrincipal();
-                        }else{
-                            System.out.println("ANTA DIGITA DIREITO!!");
-                            menuPrincipal();
-                        }
+                    if(user instanceof Diretor){
+                        cadastrarRevisor();
                     }else {
-                        System.out.println("Nenhum livro para listar!");
-                        menuPrincipal();
+                        cadastrarLivro();
                     }
-                }
-                menuPrincipal();
-                break;
-            case 3:
-                user.editarLivro();
-                menuPrincipal();
-                break;
-            case 4:
-                cadastrarRevisor();
-                menuPrincipal();
-                break;
-            case 0:
-                System.exit(0);
-                break;
+                    menuPrincipal();
+                    break;
+            }
         }
     }
 
@@ -304,14 +208,11 @@ public class Main {
     public static int verificaLivro(){
         System.out.print("Informe o ISBN do livro que você deseja editar: ");
         int isbn = tec.nextInt();
-        int verifica = -1;
         for (int i=0;i<listaLivros.size();i++){
             if(listaLivros.get(i).getIsbn() == isbn) {
                 return i;
             }
         }
-        return verifica;
+        return -1;
     }
-
-
 }

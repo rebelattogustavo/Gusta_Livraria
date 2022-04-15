@@ -1,8 +1,7 @@
 public class Diretor extends Pessoa{
-    static int cont;
     @Override
     public void listarLivros() {
-        cont = -1;
+        int cont = -1;
         for(int i =0;i<Main.listaLivros.size();i++){
             System.out.println(Main.listaLivros.get(i).toString());
             cont++;
@@ -16,6 +15,10 @@ public class Diretor extends Pessoa{
     @Override
     public void editarLivro() {
         int indiceLivro = Main.verificaLivro();
+        if(indiceLivro == -1){
+            System.out.println("Livro não encontrado!");
+            Main.menuPrincipal();
+        }
         int opcaoEdita = Main.selecionaTipoEditar("passagem pelo revisor", indiceLivro);
         switch (opcaoEdita){
             case 1:
@@ -32,14 +35,24 @@ public class Diretor extends Pessoa{
     }
 
     @Override
-    public void listarAtividade() {
-        cont = -1;
+    public String[] opcoes() {
+        return new String[]{
+            "1- Listar atividades" ,
+            "2- Listar livros" ,
+            "3- Cadastrar revisor" ,
+            "4- Logout" ,
+            "5- Encerrar"};
+    }
+
+    @Override
+    public String listarAtividade() {
+        String livros = "";
         for (int i =0;i<Main.listaLivros.size();i++){
             if(Main.listaLivros.get(i).getStatus() == 4){
-                System.out.println(Main.listaLivros.get(i).toString());
-                cont++;
+                livros += Main.listaLivros.get(i).toString();
             }
         }
+        return livros;
     }
 
 
