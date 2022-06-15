@@ -1,6 +1,6 @@
 public class Diretor extends Pessoa{
     @Override
-    public void listarLivros() {
+    public void listarLivros() throws Exception {
         int cont = -1;
         for(int i =0;i<Main.listaLivros.size();i++){
             System.out.println(Main.listaLivros.get(i).toString());
@@ -13,7 +13,7 @@ public class Diretor extends Pessoa{
     }
 
     @Override
-    public void editarLivro() {
+    public void editarLivro() throws Exception {
         int indiceLivro = Main.verificaLivro();
         if(indiceLivro == -1){
             System.out.println("Livro não encontrado!");

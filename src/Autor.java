@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Autor extends Pessoa{
 
     @Override
-    public void listarLivros() {
+    public void listarLivros() throws Exception {
         int cont = -1;
         for (int i=0;i<Main.listaLivros.size();i++){
             if(Main.user == Main.listaLivros.get(i).getAutor()){
@@ -18,7 +18,7 @@ public class Autor extends Pessoa{
     }
 
     @Override
-    public void editarLivro() {
+    public void editarLivro() throws Exception {
         int indicelivro = Main.verificaLivro();
         if(indicelivro == -1){
             System.out.println("Livro não encontrado!");
@@ -39,7 +39,7 @@ public class Autor extends Pessoa{
     }
 
     @Override
-    public String listarAtividade() {
+    public String listarAtividade() throws Exception {
         String livros = "";
         int cont = -1;
         for (int i=0;i<Main.listaLivros.size();i++){
@@ -49,7 +49,7 @@ public class Autor extends Pessoa{
             }
         }
         if (cont == -1){
-            System.out.println("Você cadastrou nenhum livro até o momento!");
+            System.out.println("Nenhuma atividade até o momento!");
             Main.menuPrincipal();
         }
         return livros;

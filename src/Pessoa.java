@@ -1,13 +1,13 @@
 public abstract class Pessoa {
     private String nome, cpf, sobrenome, email, genero, senha;
 
-    public abstract void listarLivros();
+    public abstract void listarLivros() throws Exception;
 
-    public abstract String listarAtividade();
+    public abstract String listarAtividade() throws Exception;
 
-    public abstract void editarLivro();
+    public abstract void editarLivro() throws Exception;
 
-    public abstract String[] opcoes();
+    public abstract String[] opcoes() throws Exception;
 
     public String getNome() {
         return nome;

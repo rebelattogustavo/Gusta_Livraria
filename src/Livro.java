@@ -1,8 +1,8 @@
 public class Livro {
-    private String titulo;
+    private String titulo, isbn;
     Autor autor;
     Editora editora;
-    private int status, qtdPag, isbn;
+    private int status, qtdPag;
     private double porcentagem = 0;
 
 
@@ -38,11 +38,11 @@ public class Livro {
         this.qtdPag = qtdPag;
     }
 
-    public int getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(int isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -62,7 +62,7 @@ public class Livro {
         this.editora = editora;
     }
 
-    public Livro(String titulo, Autor autor, int status, int qtdPag, int isbn) {
+    public Livro(String titulo, Autor autor, int status, int qtdPag, String isbn) {
         this.titulo = titulo;
         this.autor = autor;
         this.status = status;

@@ -26,7 +26,7 @@ public class Revisor extends Pessoa{
     }
 
     @Override
-    public void editarLivro() {
+    public void editarLivro() throws Exception {
         int indiceLivro = Main.verificaLivro();
         if(indiceLivro == -1){
             System.out.println("Livro não encontrado!");
