@@ -153,7 +153,7 @@ public class Main {
                             System.out.println("Nenhuma atividade para listar!");
                             menuPrincipal();
                         }
-                        System.out.println("Dejesa editar um dos livros acima?");
+                        System.out.println("Deseja editar um dos livros acima?");
                         char resp = tec.next().charAt(0);
                         if(resp == 's' || resp == 'S'){
                             user.editarLivro();
