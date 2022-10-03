@@ -1,7 +1,7 @@
 package br.com.senai.entities;
 
 public class Editora {
-    private String nomeEditora,cnpj;
+    private String nomeEditora;
 
     public String getNomeEditora() {
         return nomeEditora;
@@ -9,10 +9,6 @@ public class Editora {
 
     public void setNomeEditora(String nome) {
         this.nomeEditora = nome;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
     }
 
 }

@@ -3,8 +3,10 @@ package br.com.senai.entities;
 import java.util.ArrayList;
 
 public class Revisor extends Pessoa{
+    //Lista de livros que o revisor está revisando
     public static ArrayList<Livro> listaLivrosRevisor = new ArrayList<>();
 
+    //Lista os livros que o revisor tem a opção de revisar com base no status "Aguardando Revisão"
     @Override
     public void listarLivros() {
         int cont = -1;
@@ -19,6 +21,7 @@ public class Revisor extends Pessoa{
         }
     }
 
+    //Função que permite o revisor editar um livro
     @Override
     public void editarLivro() throws Exception {
         int indiceLivro = Main.verificaLivro();
@@ -47,6 +50,7 @@ public class Revisor extends Pessoa{
         }
     }
 
+    //Função que informa as opções disponíveis para revisor no menu principal
     @Override
     public String[] opcoes() {
         return new String[]{
@@ -57,6 +61,7 @@ public class Revisor extends Pessoa{
         };
     }
 
+    //Função que lista as atividades de um revisor com base no status "Em revisão"
     @Override
     public String listarAtividade() {
         String livros = "";
@@ -66,7 +71,7 @@ public class Revisor extends Pessoa{
         return livros;
     }
 
-
+    //Construtor da classe Revisor
     public Revisor(String nome, String cpf, String sobrenome, String email, String genero, String senha) {
         super(nome, cpf, sobrenome, email, genero, senha);
     }

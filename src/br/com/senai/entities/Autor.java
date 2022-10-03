@@ -9,7 +9,10 @@ import java.util.Scanner;
 public class Autor extends Pessoa{
     public static Scanner tec = new Scanner(System.in);
 
-
+    /**
+     * Função que lista os livros cadastrados no sistema pelo autor
+     * @throws Exception
+     */
     @Override
     public void listarLivros() throws Exception {
         int verificaLivros = -1;
@@ -25,6 +28,10 @@ public class Autor extends Pessoa{
         }
     }
 
+    /**
+     * Função que permite o autor editar algum livro cadastrado
+     * @throws Exception
+     */
     @Override
     public void editarLivro() throws Exception {
         int indicelivro = Main.verificaLivro();
@@ -35,19 +42,23 @@ public class Autor extends Pessoa{
         Main.listaLivros.get(indicelivro).setStatus(1);
     }
 
+    /**
+     * Função que permite o autor cadastrar um novo livro no sistema
+     * @throws Exception
+     */
     public static void cadastrarLivro() throws Exception {
 
         System.out.print("--- CADASTRO DE LIVROS ---" +
                 "\nTítulo: ");
-        String titulo = tec.next();
+        String tituloLivro = tec.next();
         for(int i=0; i< Main.listaLivros.size();i++){
-            if(titulo.equals(Main.listaLivros.get(i).getTitulo())){
+            if(tituloLivro.equals(Main.listaLivros.get(i).getTitulo())){
                 throw new LivroExistenteException();
             }
         }
         System.out.print("Quantidade de páginas: ");
-        int qtdPag = tec.nextInt();
-        if(qtdPag < 0){
+        int qtdPagLivro = tec.nextInt();
+        if(qtdPagLivro < 0){
             throw new QtdPagInvalidaException();
         }
         System.out.print("ISBN: ");
@@ -60,10 +71,13 @@ public class Autor extends Pessoa{
         if(isbn.length() != 13){
             throw new CodInvalidoException();
         }
-        Livro livro = new Livro(titulo,(Autor) Main.user ,1, qtdPag, isbn);
-        Main.listaLivros.add(livro);
+        Livro livroCadastro = new Livro(tituloLivro,(Autor) Main.user ,1, qtdPagLivro, isbn);
+        Main.listaLivros.add(livroCadastro);
     }
 
+    /**
+     * Função que permite um novo autor se cadastrar no sistema
+     */
     public static void cadastroDeAutor() {
         System.out.print("--- CADASTRO ---" +
                 "\nNome: ");
@@ -85,6 +99,9 @@ public class Autor extends Pessoa{
         Main.menuInicial();
     }
 
+    /**
+     * Função que informa as opções disponíveis para o autor no menu principal
+     */
     @Override
     public String[] opcoes() {
         return new String[]{
@@ -96,6 +113,10 @@ public class Autor extends Pessoa{
         };
     }
 
+    /**
+     * Função que lista as atividades de um autor com base no status "Aguardando edição"
+     * @throws Exception
+     */
     @Override
     public String listarAtividade() throws Exception {
         String listaLivros = "";
@@ -113,6 +134,15 @@ public class Autor extends Pessoa{
         return listaLivros;
     }
 
+    /**
+     * Construtor da classe Autor
+     * @param nomeAutor
+     * @param cpfAutor
+     * @param sobrenomeAutor
+     * @param emailAutor
+     * @param generoAutor
+     * @param senhaAutor
+     */
     public Autor(String nomeAutor, String cpfAutor, String sobrenomeAutor, String emailAutor,
                  String generoAutor, String senhaAutor) {
         super(nomeAutor, cpfAutor, sobrenomeAutor, emailAutor, generoAutor, senhaAutor);

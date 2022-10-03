@@ -5,6 +5,10 @@ import br.com.senai.exceptions.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//O sistema GustaLivraria foi desenvolvido por: Gustavo Rebelatto Zapella
+//Tem como objetivo ser um sistema de gerenciamento de livros e autores para uma biblioteca
+//Ter controle do fluxo do status do livro desde sua criação até ele ser publicado e ser cadastrado uma editora nele
+
 public class Main {
     private static Scanner tec = new Scanner(System.in);
     public static int indicePessoa;
@@ -13,43 +17,16 @@ public class Main {
     public static Pessoa user;
     public static Editora editora = new Editora();
 
-    public static void main(String[] args) throws Exception {
-
-        //Esses dados são apenas para teste do programa e não são necessários para o funcionamento do mesmo
-        String nome,cnpj, cpf, sobrenome, email, genero, senha="1";
-        editora.setNomeEditora("Gusta_Books");
-        editora.setCnpj("13.912.556/0001-04");
-
-        nome = "gu";
-        cpf = "106.141.649-66";
-        sobrenome = "Rebelatto";
-        email = "gu.zapella@gmail.com";
-        genero = "Masculino";
-        Diretor diretor = new Diretor(nome, cpf, sobrenome, email, genero, senha);
-        listaPessoas.add(diretor);
-
-        nome = "leo";
-        cpf = "106.141.648-66";
-        sobrenome = "Rafaelli";
-        email = "leo.rafaelli@gmail.com";
-        genero = "Masculino";
-        Autor autor = new Autor(nome, cpf, sobrenome, email, genero, senha);
-        listaPessoas.add(autor);
-
-        nome = "ota";
-        cpf = "109.141.649-66";
-        sobrenome = "Augusto";
-        email = "ota.augusto@gmail.com";
-        genero = "Masculino";
-        Revisor revisor = new Revisor(nome,cpf,sobrenome,email,genero,senha);
-        listaPessoas.add(revisor);
-        //Fim dos dados de teste
-
+    public static void main(String[] args) {
+        adicionaDadosTeste();
         menuInicial();
     }
 
+    /**
+     * Função que direciona o usuário para as opções de login e cadastro. Também proporciona o usuário sair do programa
+     * @throws OpcaoInvalidaException
+     */
     public static void menuInicial(){
-        //Login do programa
         try{
             System.out.println("--- MENU INICIAL ---" +
                     "\n1- Login" +
@@ -81,6 +58,11 @@ public class Main {
         }
     }
 
+    /**
+     * Função que permite o usuário logar no sistema
+     * @throws UsuarioIncorretoException
+     * @throws SenhaIncorretaException
+     */
     public static void login() {
         try{
             int verificaUsuario = 0;
@@ -90,6 +72,7 @@ public class Main {
                 if(nome.equals(listaPessoas.get(i).getNome())){
                     System.out.print("Informe a senha: ");
                     String senha = tec.next();
+                    System.out.println(listaPessoas.get(i).getSenha());
                     if(listaPessoas.get(i).getSenha().equals(senha)){
                         indicePessoa = i;
                         user = listaPessoas.get(i);
@@ -116,7 +99,10 @@ public class Main {
         }
     }
 
-
+    /**
+     * Função que direciona o usuário para as opções de menu principal dependendo de seu nível de acesso no sistema
+     * @throws Exception
+     */
     public static void menuPrincipal() throws Exception {
         try{
             System.out.println("---- MENU PRINCIPAL ----");
@@ -186,6 +172,13 @@ public class Main {
         }
     }
 
+    /**
+     * Função que informa ao usuário as opções de editar que ele tem dependendo de seu nível de acesso
+     * @param opcaoMenu
+     * @param indiceLivro
+     * @throws OpcaoInvalidaException
+     */
+
     public static int selecionaTipoEditar(String opcaoMenu, int indiceLivro) throws OpcaoInvalidaException {
         int opcao =0;
         if(user instanceof Revisor){
@@ -211,6 +204,9 @@ public class Main {
             return opcao;
     }
 
+    /**
+     * Função que verifica se o livro que o usuário deseja editar existe
+     */
     public static int verificaLivro(){
         System.out.print("Informe o ISBN do livro que você deseja editar: ");
         String isbn = tec.next();
@@ -220,5 +216,38 @@ public class Main {
             }
         }
         return -1;
+    }
+
+    /**
+     * Função que adiciona dados teste para o programa
+     * esses dados não são necessários para o funcionamento do mesmo
+     */
+    public static void adicionaDadosTeste(){
+        String nome,cnpj, cpf, sobrenome, email, genero, senha="1";
+        editora.setNomeEditora("Gusta_Books");
+
+        nome = "gu";
+        cpf = "106.141.649-66";
+        sobrenome = "Rebelatto";
+        email = "gu.zapella@gmail.com";
+        genero = "Masculino";
+        Diretor diretor = new Diretor(nome, cpf, sobrenome, email, genero, senha);
+        listaPessoas.add(diretor);
+
+        nome = "leo";
+        cpf = "106.141.648-66";
+        sobrenome = "Rafaelli";
+        email = "leo.rafaelli@gmail.com";
+        genero = "Masculino";
+        Autor autor = new Autor(nome, cpf, sobrenome, email, genero, senha);
+        listaPessoas.add(autor);
+
+        nome = "ota";
+        cpf = "109.141.649-66";
+        sobrenome = "Augusto";
+        email = "ota.augusto@gmail.com";
+        genero = "Masculino";
+        Revisor revisor = new Revisor(nome,cpf,sobrenome,email,genero,senha);
+        listaPessoas.add(revisor);
     }
 }

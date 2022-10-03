@@ -15,50 +15,15 @@ public abstract class Pessoa {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
     public String getSobrenome() {
         return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
     }
 
     public String getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
+    //Construtor da classe Pessoa
     public Pessoa(String nome, String cpf, String sobrenome, String email, String genero, String senha) {
         this.nome = nome;
         this.cpf = cpf;
@@ -68,6 +33,7 @@ public abstract class Pessoa {
         this.senha = senha;
     }
 
+    //Função que define como uma pessoa será retornada no console
     @Override
     public String toString() {
         return "Pessoa{" +

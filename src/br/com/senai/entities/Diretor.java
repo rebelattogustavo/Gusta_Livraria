@@ -3,6 +3,10 @@ package br.com.senai.entities;
 import java.util.Scanner;
 
 public class Diretor extends Pessoa{
+
+    /**
+     * Função que lista todos os livros cadastrados no sistema
+     */
     @Override
     public void listarLivros() throws Exception {
         int verificaLivros = -1;
@@ -16,6 +20,9 @@ public class Diretor extends Pessoa{
         }
     }
 
+    /**
+     * Função que permite o diretor editar um livro cadastrado
+     */
     @Override
     public void editarLivro() throws Exception {
         int indiceLivro = Main.verificaLivro();
@@ -38,6 +45,9 @@ public class Diretor extends Pessoa{
         }
     }
 
+    /**
+     * Função que permite o diretor cadastrar um novo revisor no sistema
+     */
     public static void cadastrarRevisor(){
         Scanner tec = new Scanner(System.in);
         System.out.print("Informe as informações a seguir: " +
@@ -59,6 +69,9 @@ public class Diretor extends Pessoa{
         Main.listaPessoas.add(revisor);
     }
 
+    /**
+     * Função que informa as opções disponíveis para diretor no menu principal
+     */
     @Override
     public String[] opcoes() {
         return new String[]{
@@ -69,6 +82,9 @@ public class Diretor extends Pessoa{
             "5- Encerrar"};
     }
 
+    /**
+     * Função que lista as atividades do diretor com base no status "Aprovado"
+     */
     @Override
     public String listarAtividade() {
         String listaLivros = "";
@@ -80,7 +96,15 @@ public class Diretor extends Pessoa{
         return listaLivros;
     }
 
-
+    /**
+     * Construtor da classe Diretor
+     * @param nomeDiretor
+     * @param cpfDiretor
+     * @param sobrenomeDiretor
+     * @param emailDiretor
+     * @param generoDiretor
+     * @param senhaDiretor
+     */
     public Diretor(String nomeDiretor, String cpfDiretor, String sobrenomeDiretor,
                    String emailDiretor, String generoDiretor, String senhaDiretor) {
         super(nomeDiretor, cpfDiretor, sobrenomeDiretor, emailDiretor, generoDiretor, senhaDiretor);
